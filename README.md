@@ -2,7 +2,7 @@
 
 ## Introduction
 
-An extension to [WWW::App](https://github.com/supernovus/www-app/) which
+An extension to [WWW::App](https://github.com/supernovus/perl6-www-app/) which
 adds an interface similar to Dancer or Bailador.
 
 It currently supports SCGI and HTTP::Easy as transports, and Template6
