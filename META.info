@@ -1,0 +1,14 @@
+{
+  "name"        : "WWW::App::Ballet",
+  "version"     : "*",
+  "description" : "A Dancer-like interface to WWW::App",
+  "depends"     : 
+  [ 
+    "WWW::App",
+    "SCGI",
+    "HTTP::Easy",
+    "Template6", 
+    "Flower"
+  ],
+  "source-url"    : "git://github.com/supernovus/perl6-www-app-ballet.git"
+}
