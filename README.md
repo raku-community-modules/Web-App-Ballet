@@ -21,13 +21,13 @@ are required to make this really useful.
   get '/' => sub ($c) {
     $c.content-type: 'text/plain';
     my $name = $c.get(:default<World>, 'name');
-    $c.send("Hello $name");
+    $c.send("Hello $name"); ## Explicit context output specified.
   }
 
-  get '/perl6' => 'http://perl6.org/';
+  get '/perl6' => 'http://perl6.org/'; ## A redirect statement.
 
   get '/about' => sub ($c) {
-    $c.send(template('about.tt', { :ver<1.0.0> }));
+    template 'about.tt', { :ver<1.0.0> }; ## Implicit output.
   }
 
   dance;
