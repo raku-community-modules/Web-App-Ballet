@@ -1,6 +1,6 @@
-use WWW::App::Dispatch;
+use Web::App::Dispatch;
 
-module WWW::App::Ballet;
+module Web::App::Ballet;
 
 my $app-transport;
 my $app-object;
@@ -60,7 +60,7 @@ sub app is export
 {
   if ! $app-object.defined
   {
-    $app-object = WWW::App::Dispatch.new(transport);
+    $app-object = Web::App::Dispatch.new(transport);
   }
   return $app-object;
 }

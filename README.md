@@ -1,8 +1,8 @@
-# WWW::App::Ballet
+# Web::App::Ballet
 
 ## Introduction
 
-An extension to [WWW::App](https://github.com/supernovus/perl6-www-app/) which
+An extension to [Web::App](https://github.com/supernovus/perl6-web/) which
 adds an interface similar to Dancer or Bailador.
 
 It currently supports SCGI and HTTP::Easy as transports, and Template6
@@ -10,13 +10,13 @@ and Flower::TAL as template engines. It will gain more as I develop it further.
 
 It's very much experimental, and not nearly as feature complete as I'd like.
 
-It will assist me in expanding WWW::App itself, as I figure out what features
+It will assist me in expanding Web::App itself, as I figure out what features
 are required to make this really useful.
 
 ## Example Application Script
 
 ```perl
-  use WWW::App::Ballet;
+  use Web::App::Ballet;
 
   get '/' => sub ($c) {
     $c.content-type: 'text/plain';

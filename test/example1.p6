@@ -2,7 +2,7 @@ use v6;
 
 use lib './lib';
 
-use WWW::App::Ballet;
+use Web::App::Ballet;
 
 use-scgi; ## HTTP::Easy is currently broken.
 
@@ -14,3 +14,4 @@ get '/' => sub ($c)
 }
 
 dance;
+
