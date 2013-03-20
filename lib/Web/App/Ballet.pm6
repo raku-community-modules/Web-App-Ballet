@@ -18,19 +18,38 @@ sub use-http (Int $port = 8080) is export
   $app-transport = ::('HTTP::Easy::PSGI').new(:port($port));
 }
 
-sub use-template6 (Str $path = './templates') is export
+sub set-template-engine (Str $name, Str $path = './views') is export
 {
-  require Template6;
-  $app-template-engine = ::('Template6').new;
-  $app-template-engine.add-path: $path;
+  my $module = "Web::App::Ballet::Template::$name";
+  $app-template-engine = ::($module).new;
+  $app-template-engine.set-path: $path;  
 }
 
-sub use-tal (Str $path = './templates') is export
+sub use-template6 (Str $path = './views') is export
 {
-  require Flower::TAL;
-  $app-template-engine = ::('Flower::TAL').new;
-  $app-template-engine.provider.add-path: $path;
+  require Web::App::Ballet::Template::Template6;
+  set-template-engine('Template6', $path);
 }
+
+sub use-mojo (Str $path = './views') is export
+{
+  require Web::App::Ballet::Template::Mojo;
+  set-template-engine('Mojo', $path);
+}
+
+sub use-tal (Str $path = './views') is export
+{
+  require Web::App::Ballet::Template::TAL;
+  set-template-engine('TAL', $path);
+}
+
+sub use-html (Str $path = './views') is export
+{
+  require Web::App::Ballet::Template::HTML;
+  set-template-engine('HTML', $path);
+}
+
+## TODO: support Plosurin.
 
 sub use-transport ($object) is export
 {
@@ -51,6 +70,7 @@ sub template-engine is export
 {
   if ! $app-template-engine.defined
   {
+    ## We default to Template6 is left unspecified.
     use-template6;
   }
   return $app-template-engine;
@@ -113,26 +133,14 @@ sub delete (Pair $route) is export
   handle-route($route, 'DELETE');
 }
 
-sub template (Str $template, *%opts)
+sub template (Str $template, *%named, *@positional)
 {
   my $te = template-engine;
-  if $te.can('process')
-  {
-    return $te.process($template, |%opts);
-  }
-  elsif $te.can('get')
-  {
-    my $tmpl = $te.get($template);
-    if $tmpl.can('render')
-    {
-      return $tmpl.render(|%opts);
-    }
-  }
-
-  die "template engine is not supported.";
+  $te.render($template, |%named, |@positional);
 }
 
 sub dance is export
 {
   app.run;
 }
+
