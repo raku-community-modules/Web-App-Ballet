@@ -29,6 +29,10 @@ but there are only convenience wrappers provided for the following:
 
 ## Supported Template Engines
 
+We are using [Web::Template](https://github.com/supernovus/perl6-web-template/)
+as our template engine abstraction layer, and will support any engines that it
+has wrapper classes for. The currently supported libraries are:
+
  * [Template6](https://github.com/supernovus/template6/)
 
    An engine inspired by Template Toolkit. Has many features.
@@ -75,10 +79,9 @@ but there are only convenience wrappers provided for the following:
 
 ## TODO
 
- * Add examples for the various template engines.
+ * Add examples using templates.
  * Add testing ability once Web::App has testing support added.
  * Add pathname placeholder support: get '/users/:username'
- * Add support for the Plosurin template engine.
 
 ## Author
 
