@@ -7,8 +7,7 @@
     "Web",
     "SCGI",
     "HTTP::Easy",
-    "Template6", 
-    "Flower"
+    "Web::Template"
   ],
   "source-url"    : "git://github.com/supernovus/perl6-web-app-ballet.git"
 }
