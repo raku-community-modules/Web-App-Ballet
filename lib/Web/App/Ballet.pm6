@@ -21,31 +21,32 @@ sub use-http (Int $port = 8080) is export
 sub set-template-engine (Str $name, Str $path = './views') is export
 {
   my $module = "Web::Template::$name";
+  require $module;
   $app-template-engine = ::($module).new;
   $app-template-engine.set-path: $path;  
 }
 
 sub use-template6 (Str $path = './views') is export
 {
-  require Web::Template::Template6;
+#  require Web::Template::Template6;
   set-template-engine('Template6', $path);
 }
 
 sub use-mojo (Str $path = './views') is export
 {
-  require Web::Template::Mojo;
+#  require Web::Template::Mojo;
   set-template-engine('Mojo', $path);
 }
 
 sub use-tal (Str $path = './views') is export
 {
-  require Web::Template::TAL;
+#  require Web::Template::TAL;
   set-template-engine('TAL', $path);
 }
 
 sub use-html (Str $path = './views') is export
 {
-  require Web::Template::HTML;
+#  require Web::Template::HTML;
   set-template-engine('HTML', $path);
 }
 
@@ -92,6 +93,8 @@ sub add-route (*%rules) is export
 
 sub handle-route (Pair $route, $method?)
 {
+  ## TODO: if a path is detected, let's handle it properly.
+
   my %rules = { :path($route.key) };
   my $target = $route.value;
   if $target ~~ Str
@@ -133,7 +136,7 @@ sub delete (Pair $route) is export
   handle-route($route, 'DELETE');
 }
 
-sub template (Str $template, *%named, *@positional)
+sub template (Str $template, *%named, *@positional) is export
 {
   my $te = template-engine;
   $te.render($template, |%named, |@positional);
