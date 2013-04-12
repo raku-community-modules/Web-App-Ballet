@@ -69,8 +69,13 @@ has wrapper classes for. The currently supported libraries are:
 
   get '/perl6' => 'http://perl6.org/'; ## A redirect statement.
 
+  get '/hello/:name' => sub ($c) {
+    my $name = $c.get(':name'); ## get the placeholder path.
+    $c.send(template('hello', :$name)); ## Explicit template output.
+  }
+
   get '/about' => sub ($c) {
-    template 'about.tt', { :ver<1.0.0> }; ## Implicit output.
+    template 'about', :ver<1.0.0>; ## Implicit template output.
   }
 
   dance; ## Start the process.
@@ -79,9 +84,7 @@ has wrapper classes for. The currently supported libraries are:
 
 ## TODO
 
- * Add examples using templates.
  * Add testing ability once Web::App has testing support added.
- * Add pathname placeholder support: get '/users/:username'
 
 ## Author
 

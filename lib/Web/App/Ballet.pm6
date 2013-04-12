@@ -28,25 +28,21 @@ sub set-template-engine (Str $name, Str $path = './views') is export
 
 sub use-template6 (Str $path = './views') is export
 {
-#  require Web::Template::Template6;
   set-template-engine('Template6', $path);
 }
 
 sub use-mojo (Str $path = './views') is export
 {
-#  require Web::Template::Mojo;
   set-template-engine('Mojo', $path);
 }
 
 sub use-tal (Str $path = './views') is export
 {
-#  require Web::Template::TAL;
   set-template-engine('TAL', $path);
 }
 
 sub use-html (Str $path = './views') is export
 {
-#  require Web::Template::HTML;
   set-template-engine('HTML', $path);
 }
 
@@ -86,16 +82,21 @@ sub app is export
   return $app-object;
 }
 
-sub add-route (*%rules) is export
-{
-  app.add(|%rules);
-}
-
 sub handle-route (Pair $route, $method?)
 {
-  ## TODO: if a path is detected, let's handle it properly.
-
-  my %rules = { :path($route.key) };
+  my %rules;
+  my $path = $route.key;
+  if $path eq '*' {
+    %rules<default> = True;
+  }
+  elsif $path eq '/' {
+    %rules<path> = $path;
+  }
+  else
+  {
+    %rules<matchpath> = $path;
+  }
+   
   my $target = $route.value;
   if $target ~~ Str
   {
