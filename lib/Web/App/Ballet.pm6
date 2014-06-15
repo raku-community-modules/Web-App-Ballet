@@ -21,7 +21,7 @@ sub use-http (Int $port = 8080) is export
 sub set-template-engine (Str $name, Str $path = './views') is export
 {
   my $module = "Web::Template::$name";
-  require $module;
+  require ::($module);
   $app-template-engine = ::($module).new;
   $app-template-engine.set-path: $path;  
 }
