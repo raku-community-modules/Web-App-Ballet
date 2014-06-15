@@ -108,7 +108,11 @@ sub handle-route (Pair $route, $method?)
   }
   else
   {
-    %rules<handler> = $target;
+    %rules<handler> = sub ($c) {
+      my $ret = $target($c);
+      $c.send($ret) if $ret ~~ Stringy;
+      return $ret;
+    }
   }
   if $method
   {
