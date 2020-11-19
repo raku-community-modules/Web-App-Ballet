@@ -13,5 +13,5 @@
   "provides" : {
     "Web::App::Ballet" : "lib/Web/App/Ballet.pm6"
   },
-  "source-url"    : "git://github.com/supernovus/perl6-web-app-ballet.git"
+  "source-url"    : "git://github.com/raku-community-modules/Web-App-Ballet.git"
 }
