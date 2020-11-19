@@ -88,7 +88,7 @@ has wrapper classes for. The currently supported libraries are:
 
 ## Author
 
-[Timothy Totten](https://github.com/supernovus/) -- supernovus on #perl6
+[Timothy Totten](https://github.com/supernovus/) -- supernovus on #raku
 
 ## License
 
