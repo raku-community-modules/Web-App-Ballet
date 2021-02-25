@@ -2,3 +2,4 @@ blib
 Makefile
 *.pir
 *.pbc
+.idea/
