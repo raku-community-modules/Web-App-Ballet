@@ -2,7 +2,8 @@
 
 ## Introduction
 
-An extension to [Web::App](https://github.com/supernovus/perl6-web/) which
+An extension to [Web::App](https://github.com/raku-community-modules/Web-App
+/) which
 adds an interface similar to Dancer or Bailador.
 
 NOTE: I am reworking this module to be merged with Bailador.
@@ -16,12 +17,12 @@ then work with tadzik to make any transition required to merge the projects.
 Technically, it can use any backend transport that Web::App supports, 
 but there are only convenience wrappers provided for the following:
 
- * [SCGI](https://github.com/supernovus/SCGI/)
+ * [SCGI](https://github.com/raku-community-modules/SCGI/)
 
    The fastest way to connect to a web server such as Apache or lighttpd.
    Type 'use-scgi' in your application to use this.
 
- * [HTTP::Easy](https://github.com/supernovus/perl6-http-easy/)
+ * [HTTP::Easy](https://github.com/raku-community-modules/HTTP-easy/)
 
    A standalone HTTP server, useful for testing your in-development apps.
    Type 'use-http' in your application to use this.
@@ -29,11 +30,12 @@ but there are only convenience wrappers provided for the following:
 
 ## Supported Template Engines
 
-We are using [Web::Template](https://github.com/supernovus/perl6-web-template/)
+We are using [Web::Template](https://github.com/raku-community-modules/Web
+-Template/)
 as our template engine abstraction layer, and will support any engines that it
 has wrapper classes for. The currently supported libraries are:
 
- * [Template6](https://github.com/supernovus/template6/)
+ * [Template6](https://github.com/raku-community-modules/template6/)
 
    An engine inspired by Template Toolkit. Has many features.
    Type 'use-template6' in your application to use this engine.
@@ -46,17 +48,17 @@ has wrapper classes for. The currently supported libraries are:
 
  * [Template::Mojo](https://github.com/tadzik/Template-Mojo/)
 
-   A template engine inspired by Perl 5's Mojo::Template.
+   A template engine inspired by Perl's Mojo::Template.
    Type 'use-mojo' in your application to use this engine.
 
  * [HTML::Template](https://github.com/masak/html-template/)
 
-   A template engine inspired by Perl 5's HTML::Template.
+   A template engine inspired by Perl's HTML::Template.
    Type 'use-html' in your application to use this engine.
 
 ## Example Application Script
 
-```perl
+```raku
   use Web::App::Ballet;
 
   use-template6; ## We're explicitly setting the template engine.
