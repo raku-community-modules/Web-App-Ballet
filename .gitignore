@@ -3,3 +3,4 @@ Makefile
 *.pir
 *.pbc
 .idea/
+.precomp/
