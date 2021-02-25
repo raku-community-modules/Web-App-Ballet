@@ -91,28 +91,20 @@ sub handle-route (Pair $route, $method?)
     when '/' { %rules<path> = $path; }
     default { %rules<matchpath> = $path; }
   }
-  
+
   my $target = $route.value;
-  if $target ~~ Str
-  {
-    %rules<redirect> = $target;
-  }
-  elsif $target ~~ Int
-  {
-    %rules<status> = $target;
-  }
-  else
-  {
-    %rules<handler> = sub ($c) {
-      my $ret = $target($c);
-      $c.send($ret) if $ret ~~ Stringy;
-      return $ret;
+  given $target {
+    when Str { %rules<redirect> = $target; }
+    when Int { %rules<status> = $target; }
+    default {
+      %rules<handler> = sub ($c) {
+        my $ret = $target($c);
+        $c.send($ret) if $ret ~~ Stringy;
+        return $ret;
+      }
     }
   }
-  if $method
-  {
-    %rules<method> = $method;
-  }
+  %rules<method> = $method if $method;
   app.add(|%rules);
 }
 
