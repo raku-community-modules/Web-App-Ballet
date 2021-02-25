@@ -86,17 +86,12 @@ sub handle-route (Pair $route, $method?)
 {
   my %rules;
   my $path = $route.key;
-  if $path eq '*' {
-    %rules<default> = True;
+  given $path {
+    when '*' { %rules<default> = True; }
+    when '/' { %rules<path> = $path; }
+    default { %rules<matchpath> = $path; }
   }
-  elsif $path eq '/' {
-    %rules<path> = $path;
-  }
-  else
-  {
-    %rules<matchpath> = $path;
-  }
-   
+  
   my $target = $route.value;
   if $target ~~ Str
   {
