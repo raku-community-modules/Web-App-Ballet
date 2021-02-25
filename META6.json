@@ -5,7 +5,7 @@
   "description" : "A Dancer-like interface to Web::App",
   "depends"     : 
   [ 
-    "Web",
+    "Web::App",
     "SCGI",
     "HTTP::Easy",
     "Web::Template"
